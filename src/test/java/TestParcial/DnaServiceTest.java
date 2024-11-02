@@ -11,6 +11,19 @@ public class DnaServiceTest {
     private final DnaService dnaService = new DnaService(null); // Pasamos null porque no usaremos el repositorio en los tests
 
     @Test
+    public void testRowAndColum() {
+        String[] dna = {
+                "ATGCGA",
+                "CAGTGC",
+                "TTATGT",
+                "AGAAGG",
+                "CCCCTA",
+                "TCACTG"
+        };
+        assertTrue(dnaService.analyzeDna(dna));
+    }
+
+    @Test
     public void testRows() {
         String[] dna = {
                 "AAAATG",
@@ -37,6 +50,19 @@ public class DnaServiceTest {
     }
 
     @Test
+    public void testError() {
+        String[] dna = {
+                "AGTCAA",
+                "GTCACG",
+                "CTGGTA",
+                "ACTGCC",
+                "CCTAGT",
+                "AAGCAA"
+        };
+        assertFalse(dnaService.analyzeDna(dna));
+    }
+
+    @Test
     public void testMainDiagonals() {
         String[] dna = {
                 "AGAATG",
@@ -47,6 +73,19 @@ public class DnaServiceTest {
                 "AGTCAA"
         };
         assertTrue(dnaService.analyzeDna(dna));
+    }
+
+    @Test
+    public void testError1() {
+        String[] dna = {
+                "AGTCAG",
+                "AAGTCC",
+                "CCTGGG",
+                "ATTCAA",
+                "CTTAGA",
+                "GTACCC"
+        };
+        assertFalse(dnaService.analyzeDna(dna));
     }
 
     @Test
@@ -72,7 +111,7 @@ public class DnaServiceTest {
                 "GTAGTC",
                 "AGTCAA"
         };
-        assertTrue(dnaService.analyzeDna(dna));
+        assertFalse(dnaService.analyzeDna(dna));
     }
 
     @Test
@@ -87,6 +126,20 @@ public class DnaServiceTest {
         };
         assertFalse(dnaService.analyzeDna(dna));
     }
+
+    @Test
+    public void testRows2() {
+        String[] dna = {
+                "TTTTTA",
+                "AAAATA",
+                "GGGGTA",
+                "CCCCTA",
+                "TATATA",
+                "ACGTAC"
+        };
+        assertFalse(dnaService.analyzeDna(dna));
+    }
+
 
     @Test
     public void testMutant1() {
@@ -109,4 +162,5 @@ public class DnaServiceTest {
         };
         assertFalse(dnaService.analyzeDna(dna));
     }
+
 }
